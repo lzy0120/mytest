@@ -1,0 +1,47 @@
+.newPage {
+  // slide
+  .swiper {
+    &-slide {
+      height: 100%
+    }
+    .cube-slide-dots {
+      bottom: 5px
+      span {
+        margin: 0 3px
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        background: #f2f2f2
+        &.active {
+          background: $color-main
+        }
+      }
+    }
+  }
+  // input
+  .cube-input {
+    width: 100%
+    background: none
+    &:after {
+      border: 0
+    }
+    &.cube-input_active {
+      &:after {
+        border: 0
+      }
+    }
+  }
+  // 刷新&加载更多
+  .cube-pullup-wrapper,
+  .cube-pulldown-loaded {
+    font-size: $font-text-large
+    color: $color-desc
+  }
+}
+
+// select
+.cube-popup {
+  .cube-picker-confirm {
+    color: $color-main
+  }
+}

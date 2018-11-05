@@ -1,0 +1,49 @@
+.form {
+  font-size: 0
+  /*Form Css*/
+  &-item {
+    position: relative
+    display: flex
+    align-items: stretch
+    justify-content: flex-start
+    &:not(:first-of-type) {
+      margin-top: 20px
+    }
+  }
+  .iconfont {
+    display: block
+    padding-left: 10px
+    font-size: $font-title-normal
+    color: $color-main
+  }
+  .cube-input, .verifyCode {
+    height: 40px
+    border: 1px solid #a0a0a0
+    border-radius: $radius-normal
+  }
+  .cube-validator {
+    position: absolute
+    left: 0
+    bottom: -20px
+    font-size: $font-text-normal
+    color: $color-error
+    line-height: 20px
+  }
+  .verifyCode {
+    margin-left: 10px
+    width: auto
+  }
+  &-send {
+    margin-top: 50px
+    width: 100%
+    font-size: $font-text-large
+    color: #fff
+    text-align: center
+    line-height: 40px
+    border-radius: $radius-normal
+    background: $color-main
+    &.disabled {
+      background: $color-disabled
+    }
+  }
+}

@@ -1,0 +1,23 @@
+// 弹窗弹出动画
+.bounceIn-enter-active, .bounceIn-leave-active {
+  transition: all .3s
+}
+
+.bounceIn-enter-active {
+  opacity: 1
+  transform: scaleX(1)
+}
+
+.bounceIn-leave-to {
+  opacity: 0
+  transform: scale3d(.3, .3, .3)
+}
+
+// 横向滑动淡入动画
+.slide-enter-active, .slide-leave-active {
+  transition: all .3s
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translate3d(100%, 0, 0)
+}
