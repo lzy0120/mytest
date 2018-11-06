@@ -28,7 +28,7 @@
         width: 90%
         border-left: 2px solid #00cacf
         padding-left: 10px
-        margin: 10px auto 0
+        margin: 16px auto
         .title{
             font-size: 18px
             line-height: 1.2

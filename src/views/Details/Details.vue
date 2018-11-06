@@ -1,6 +1,7 @@
 <template>
   <div class="detailsBox newPage">
     <template v-if="detailsData">
+      <TopBar></TopBar>
       <div class="swiper">
         <cube-slide ref="slide"
                     :data="detailsData.mainImageList"
@@ -15,47 +16,39 @@
         </cube-slide>
       </div>
       <div class="description">
-        <h3 class="descTitle">黄浦区陆家浜卫浴改造</h3>
-        <span class="descProject">上海·阳光翠竹苑</span>
-        <span class="descProject">4.5㎡·卫浴</span>
-        <span class="descProject">￥44700</span>
+        <h3 class="descTitle">{{detailsData.name}}</h3>
+        <span class="descProject">{{detailsData.city}}·{{detailsData.houseName}}</span>
+        <span class="descProject">{{detailsData.acreage}}㎡·{{detailsData.juZhuangType}}</span>
+        <span class="descProject">￥{{detailsData.totalPrice}}</span>
         <div class="appointment">
-          <span class="descProject appProject">改造时间：2017-08-13</span>
+          <span class="descProject appProject">改造时间：{{detailsData.decorationTime}}</span>
           <a href="" class="appLink">立即预约</a>
         </div>
-        <p class="descTxt">“将原本昏暗、杂乱的卫生间改造成明亮、整齐的现代卫浴空间；干湿分离,安全方便,采用智能卫浴,引领洗浴生活新方式”</p>
+        <p class="descTxt">{{detailsData.description}}</p>
       </div>
       <div class="separation"></div>
       <div class="material">
         <SmallTitle
           :title="titleArr[0]"
         ></SmallTitle>
-        <ul class="meterialBox">
-          <li class="item">
-            <img src="" alt="">
-            <p>科勒 · 座便器</p>
-          </li>
-          <li class="item">
-            <img src="" alt="">
-            <p>科勒 · 座便器</p>
-          </li>
-          <li class="item">
-            <img src="" alt="">
-            <p>科勒 · 座便器</p>
-          </li>
-          <li class="item">
-            <img src="" alt="">
-            <p>科勒 · 座便器</p>
-          </li>
-          <li class="item">
-            <img src="" alt="">
-            <p>科勒 · 座便器</p>
-          </li>
-          <li class="item">
-            <img src="" alt="">
-            <p>科勒 · 座便器</p>
-          </li>
-        </ul>
+        <cube-scroll
+          ref="scroll"
+          :data="detailsData.goodsDetails"
+          direction="horizontal"
+          class="horizontal-scroll-list-wrap">
+          <ul class="list-wrapper">
+            <li
+              v-for="(item, index) in detailsData.goodsDetails"
+              :key="index"
+              class="list-item">
+              <img :src="imgLink(item.thumbList[0].url)"
+                   alt=""
+                   class="horImg"
+              >
+              <p class="horDesc">{{item.name}}</p>
+            </li>
+          </ul>
+        </cube-scroll>
       </div>
       <div class="separation"></div>
       <div class="workBox">
@@ -115,11 +108,20 @@
                 <img :src="imgLink(item.imageURL)">
                 <p class="descWork">{{item.desc}}</p>
               </cube-slide-item>
+              <template slot="dots"
+                        slot-scope="props"
+              >
+                <span class="my-dot"
+                      v-if="detailsData.afterDecorationImages.length > 1"
+                      :class="{active: props.current === index}"
+                      v-for="(item, i) in detailsData.afterDecorationImages"
+                      :key="i"
+                >{{i + 1}}</span>
+              </template>
             </cube-slide>
           </div>
         </div>
       </div>
-      <p>fshee</p>
     </template>
   </div>
 </template>
@@ -214,19 +216,36 @@
         }
       }
       .descTxt {
-        margin-top: 10px
+        margin: 10px 0
         font-size: 12px
         color: #a3a3a3
         line-height: 1.2
       }
     }
     .material {
-      .meterialBox {
-        font-size: 0
-        .item {
+      .horizontal-scroll-list-wrap {
+        /deep/ .cube-scroll-content {
           display: inline-block
-          font-size: 12px
-          text-align: center
+          .list-wrapper {
+            padding: 0 15px
+            white-space: nowrap
+            .list-item {
+              display: inline-block
+              margin-right: 15px
+              .horImg {
+                width: 100px
+                height: 100px
+                border: 1px solid #ddd
+                box-shadow: -2px 2px 10px #dddcdc
+              }
+              .horDesc {
+                font-size: 12px
+                margin-top: 10px
+                text-align: center
+                no-wrap()
+              }
+            }
+          }
         }
       }
     }
