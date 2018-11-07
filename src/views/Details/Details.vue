@@ -1,6 +1,8 @@
 <template>
   <div class="detailsBox newPage">
-    <TopBar></TopBar>
+    <TopBar
+      :title="topBarTitle"
+    ></TopBar>
     <cube-scroll
       :data="detailsData"
     >
@@ -131,6 +133,7 @@
     data: () => ({
       detailsData: null,
       cityCode: '3101',
+      topBarTitle: '精选案例',
       titleArr: [
         '物料明细',
         '施工前',

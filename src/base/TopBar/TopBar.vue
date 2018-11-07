@@ -2,7 +2,7 @@
   <div class="top-bar">
     <button type="button" class="top-back"></button>
     <img src="./logo.png" alt="" class="top-img">
-    <h2 class="top-txt">adgsagb</h2>
+    <h2 class="top-txt">{{title}}</h2>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
     name: 'TopBar',
     props: {
       title: {
-        type: String,
+        type: 'String',
         default: ''
       }
     }
