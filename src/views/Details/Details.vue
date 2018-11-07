@@ -1,5 +1,6 @@
 <template>
   <div class="detailsBox newPage">
+    <Loading v-show="!detailsData"></Loading>
     <TopBar
       :title="topBarTitle"
     ></TopBar>
@@ -16,7 +17,7 @@
               v-for="(item, index) in detailsData.mainImageList"
               :key="index"
             >
-              <img :src="imgLink(item.imageURL)">
+              <img v-lazy="imgLink(item.imageURL)">
             </cube-slide-item>
           </cube-slide>
         </div>
@@ -46,7 +47,7 @@
                 v-for="(item, index) in detailsData.goodsDetails"
                 :key="index"
                 class="list-item">
-                <img :src="imgLink(item.thumbList[0].url)"
+                <img v-lazy="imgLink(item.thumbList[0].url)"
                      alt=""
                      class="horImg"
                 >
@@ -71,7 +72,7 @@
                   v-for="(item, index) in detailsData.preDecorationImages"
                   :key="index"
                 >
-                  <img :src="imgLink(item.imageURL)">
+                  <img v-lazy="imgLink(item.imageURL)">
                   <p class="descWork">{{item.desc}}</p>
                 </cube-slide-item>
               </cube-slide>
@@ -92,7 +93,7 @@
                   v-for="(item, index) in detailsData.inDecorationImages"
                   :key="index"
                 >
-                  <img :src="imgLink(item.imageURL)">
+                  <img v-lazy="imgLink(item.imageURL)">
                   <p class="descWork">{{item.desc}}</p>
                 </cube-slide-item>
               </cube-slide>
@@ -113,7 +114,7 @@
                   v-for="(item, index) in detailsData.afterDecorationImages"
                   :key="index"
                 >
-                  <img :src="imgLink(item.imageURL)">
+                  <img v-lazy="imgLink(item.imageURL)">
                   <p class="descWork">{{item.desc}}</p>
                 </cube-slide-item>
               </cube-slide>
@@ -171,6 +172,9 @@
 <style lang="stylus" scoped>
   .detailsBox {
     padding: 44px 0 60px
+    .swiper {
+      height: 4.6rem
+    }
     .workBox {
       .descWork {
         font-size: 14px

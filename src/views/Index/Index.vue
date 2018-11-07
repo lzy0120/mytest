@@ -1,5 +1,6 @@
 <template>
   <div class="zhibojian newPage">
+    <Loading v-show="!zbjList"></Loading>
     <TopBar
       :title="topBarTitle"
     ></TopBar>
@@ -12,7 +13,7 @@
            @click="toCaseDetails(item.code)"
       >
         <div class="left">
-          <img :src="imgLink(item.imgUrl)" alt="">
+          <img v-lazy="imgLink(item.imgUrl)" alt="">
         </div>
         <div class="right">
           <h3>{{item.name}}</h3>
@@ -79,14 +80,16 @@
       .right {
         width: 3.5rem
         font-size: 12px
+        margin-left: 10px
         h3 {
           font-size: 14px
           font-weight: bold
-          margin-bottom: 16px
+          margin-bottom: 12px
           no-wrap()
         }
         p {
-          line-height: 1.4
+          line-height: 1.8
+          color: #a3a3a3
         }
       }
     }
