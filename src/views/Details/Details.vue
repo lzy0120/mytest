@@ -1,128 +1,127 @@
 <template>
   <div class="detailsBox newPage">
-    <template v-if="detailsData">
-      <TopBar></TopBar>
-      <div class="swiper">
-        <cube-slide ref="slide"
-                    :data="detailsData.mainImageList"
-                    v-bind="slideOptions"
-        >
-          <cube-slide-item
-            v-for="(item, index) in detailsData.mainImageList"
-            :key="index"
+    <TopBar></TopBar>
+    <cube-scroll
+      :data="detailsData"
+    >
+      <template v-if="detailsData">
+        <div class="swiper">
+          <cube-slide ref="slide"
+                      :data="detailsData.mainImageList"
+                      v-bind="slideOptions"
           >
-            <img :src="imgLink(item.imageURL)">
-          </cube-slide-item>
-        </cube-slide>
-      </div>
-      <div class="description">
-        <h3 class="descTitle">{{detailsData.name}}</h3>
-        <span class="descProject">{{detailsData.city}}·{{detailsData.houseName}}</span>
-        <span class="descProject">{{detailsData.acreage}}㎡·{{detailsData.juZhuangType}}</span>
-        <span class="descProject">￥{{detailsData.totalPrice}}</span>
-        <div class="appointment">
-          <span class="descProject appProject">改造时间：{{detailsData.decorationTime}}</span>
-          <a href="" class="appLink">立即预约</a>
-        </div>
-        <p class="descTxt">{{detailsData.description}}</p>
-      </div>
-      <div class="separation"></div>
-      <div class="material">
-        <SmallTitle
-          :title="titleArr[0]"
-        ></SmallTitle>
-        <cube-scroll
-          ref="scroll"
-          :data="detailsData.goodsDetails"
-          direction="horizontal"
-          class="horizontal-scroll-list-wrap">
-          <ul class="list-wrapper">
-            <li
-              v-for="(item, index) in detailsData.goodsDetails"
+            <cube-slide-item
+              v-for="(item, index) in detailsData.mainImageList"
               :key="index"
-              class="list-item">
-              <img :src="imgLink(item.thumbList[0].url)"
-                   alt=""
-                   class="horImg"
-              >
-              <p class="horDesc">{{item.name}}</p>
-            </li>
-          </ul>
-        </cube-scroll>
-      </div>
-      <div class="separation"></div>
-      <div class="workBox">
-        <div class="befWork">
-          <SmallTitle
-            :title="titleArr[1]"
-          ></SmallTitle>
-          <div class="swiper">
-            <cube-slide ref="slide"
-                        :data="detailsData.preDecorationImages"
-                        v-bind="slideOptions"
             >
-              <cube-slide-item
-                v-for="(item, index) in detailsData.preDecorationImages"
+              <img :src="imgLink(item.imageURL)">
+            </cube-slide-item>
+          </cube-slide>
+        </div>
+        <div class="description">
+          <h3 class="descTitle">{{detailsData.name}}</h3>
+          <span class="descProject">{{detailsData.city}}·{{detailsData.houseName}}</span>
+          <span class="descProject">{{detailsData.acreage}}㎡·{{detailsData.juZhuangType}}</span>
+          <span class="descProject">￥{{detailsData.totalPrice}}</span>
+          <div class="appointment">
+            <span class="descProject appProject">改造时间：{{detailsData.decorationTime}}</span>
+            <a href="" class="appLink">立即预约</a>
+          </div>
+          <p class="descTxt">{{detailsData.description}}</p>
+        </div>
+        <Separation></Separation>
+        <div class="material">
+          <SmallTitle
+            :title="titleArr[0]"
+          ></SmallTitle>
+          <cube-scroll
+            ref="scroll"
+            :data="detailsData.goodsDetails"
+            direction="horizontal"
+            class="horizontal-scroll-list-wrap">
+            <ul class="list-wrapper">
+              <li
+                v-for="(item, index) in detailsData.goodsDetails"
                 :key="index"
+                class="list-item">
+                <img :src="imgLink(item.thumbList[0].url)"
+                     alt=""
+                     class="horImg"
+                >
+                <p class="horDesc">{{item.name}}</p>
+              </li>
+            </ul>
+          </cube-scroll>
+        </div>
+        <Separation></Separation>
+        <div class="workBox">
+          <div class="befWork">
+            <SmallTitle
+              :title="titleArr[1]"
+            ></SmallTitle>
+            <div class="swiper">
+              <cube-slide ref="slide"
+                          :data="detailsData.preDecorationImages"
+                          :showDots="detailsData.preDecorationImages.length > 1"
+                          v-bind="slideOptions"
               >
-                <img :src="imgLink(item.imageURL)">
-                <p class="descWork">{{item.desc}}</p>
-              </cube-slide-item>
-            </cube-slide>
+                <cube-slide-item
+                  v-for="(item, index) in detailsData.preDecorationImages"
+                  :key="index"
+                >
+                  <img :src="imgLink(item.imageURL)">
+                  <p class="descWork">{{item.desc}}</p>
+                </cube-slide-item>
+              </cube-slide>
+            </div>
+          </div>
+          <Separation></Separation>
+          <div class="Working">
+            <SmallTitle
+              :title="titleArr[2]"
+            ></SmallTitle>
+            <div class="swiper">
+              <cube-slide ref="slide"
+                          :data="detailsData.inDecorationImages"
+                          :showDots="detailsData.inDecorationImages.length > 1"
+                          v-bind="slideOptions"
+              >
+                <cube-slide-item
+                  v-for="(item, index) in detailsData.inDecorationImages"
+                  :key="index"
+                >
+                  <img :src="imgLink(item.imageURL)">
+                  <p class="descWork">{{item.desc}}</p>
+                </cube-slide-item>
+              </cube-slide>
+            </div>
+          </div>
+          <Separation></Separation>
+          <div class="aftWork">
+            <SmallTitle
+              :title="titleArr[3]"
+            ></SmallTitle>
+            <div class="swiper">
+              <cube-slide ref="slide"
+                          :data="detailsData.afterDecorationImages"
+                          :showDots="detailsData.afterDecorationImages.length > 1"
+                          v-bind="slideOptions"
+              >
+                <cube-slide-item
+                  v-for="(item, index) in detailsData.afterDecorationImages"
+                  :key="index"
+                >
+                  <img :src="imgLink(item.imageURL)">
+                  <p class="descWork">{{item.desc}}</p>
+                </cube-slide-item>
+              </cube-slide>
+            </div>
           </div>
         </div>
-        <div class="separation"></div>
-        <div class="Working">
-          <SmallTitle
-            :title="titleArr[2]"
-          ></SmallTitle>
-          <div class="swiper">
-            <cube-slide ref="slide"
-                        :data="detailsData.inDecorationImages"
-                        v-bind="slideOptions"
-            >
-              <cube-slide-item
-                v-for="(item, index) in detailsData.inDecorationImages"
-                :key="index"
-              >
-                <img :src="imgLink(item.imageURL)">
-                <p class="descWork">{{item.desc}}</p>
-              </cube-slide-item>
-            </cube-slide>
-          </div>
-        </div>
-        <div class="separation"></div>
-        <div class="aftWork">
-          <SmallTitle
-            :title="titleArr[3]"
-          ></SmallTitle>
-          <div class="swiper">
-            <cube-slide ref="slide"
-                        :data="detailsData.afterDecorationImages"
-                        v-bind="slideOptions"
-            >
-              <cube-slide-item
-                v-for="(item, index) in detailsData.afterDecorationImages"
-                :key="index"
-              >
-                <img :src="imgLink(item.imageURL)">
-                <p class="descWork">{{item.desc}}</p>
-              </cube-slide-item>
-              <template slot="dots"
-                        slot-scope="props"
-              >
-                <span class="my-dot"
-                      v-if="detailsData.afterDecorationImages.length > 1"
-                      :class="{active: props.current === index}"
-                      v-for="(item, i) in detailsData.afterDecorationImages"
-                      :key="i"
-                >{{i + 1}}</span>
-              </template>
-            </cube-slide>
-          </div>
-        </div>
-      </div>
-    </template>
+        <Separation></Separation>
+      </template>
+    </cube-scroll>
+    <BottomLink></BottomLink>
   </div>
 </template>
 
@@ -168,10 +167,7 @@
 
 <style lang="stylus" scoped>
   .detailsBox {
-    .separation {
-      height: 12px
-      background: #ddd
-    }
+    padding: 44px 0 60px
     .workBox {
       .descWork {
         font-size: 14px
